@@ -39,26 +39,15 @@ int main(void)
     std::cin >> count_rock;
 
     int a, b;
-    for (int i = 2; i < count_rock - 1; i++)
-    {
 
-        a = count_rock / i;
-        b = count_rock % i;
-        if (b != 0)
-            temp_area = a * 2 + b * 2;
-        if (area_round == 0)
-        {
-            area_round = temp_area;
-            std::cout << "first area_rount : " << area_round << "\n";
-            continue;
-        }
+    a = count_rock / 2;
+    b = count_rock / a;
+    if (count_rock % 2 != 0)
+        b += 1;
+    a = (a - 1) * 2;
+    b = (b - 1) * 2;
+    area_round = a + b;
 
-        if (temp_area < area_round)
-        {
-            std::cout << "changed area_round a : " << a << " b : " << b << " round : " << area_round << " i : " << i << "\n";
-            area_round = temp_area;
-        }
-    }
-
+    std::cout << "a : " << a << " b : " << b << "round : " << area_round << "\n";
     std::cout << area_round;
 }
