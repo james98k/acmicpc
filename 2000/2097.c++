@@ -40,13 +40,9 @@ int main(void)
 
     int a, b;
 
-    a = count_rock / 2;
-    b = count_rock / a;
-    if (count_rock % 2 != 0)
-        b += 1;
-    a = (a - 1) * 2;
-    b = (b - 1) * 2;
-    area_round = a + b;
+    for (int i = 2; i <= count_rock; i++)
+    {
+    }
 
     std::cout << "a : " << a << " b : " << b << "round : " << area_round << "\n";
     std::cout << area_round;
