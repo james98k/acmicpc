@@ -6,7 +6,7 @@ number + _s : studied with reference
 
 contact info : eunokim4023@naver.com
 <br>
-info : handong global university
+info : handong global university <br>
 major : Computer Science/ English Translation (double major)
 <br>
 cs interests : web development, electron, typescript, react, spring, c++(algorithm studies)
