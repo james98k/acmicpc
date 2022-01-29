@@ -25,6 +25,6 @@ int main(void)
             one[i] = one[i - 1] + one[i - 2];
         }
 
-        std::cout << zero[n] << " " << one[n];
+        std::cout << zero[n] << " " << one[n] << "\n";
     }
 }
