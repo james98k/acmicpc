@@ -14,7 +14,7 @@ class node{
         int frequency;
         char alphabet;
         
-        node(int frequency, char alphabet);
+        node(char alphabet, int frequency);
         node * left;
         node * right;
 
@@ -53,9 +53,9 @@ class PriorityQueue{
         void enqueue(node * value);
         void maximum(int arr[]);
         void extract_max(int arr[]);
-        void increase_key(int arr[], int x, int k);
-        qNode * findNodeFromQueue(node * char);
-
+        
+        int findNodeFromQueue(qNode * qn, char alphabet);
+        void printQueue();
         
 
 

@@ -1,88 +1,130 @@
 #include "header.h"
 #include <string>
 
-node::node(int frequency, char alphabet){
-    this->frequency = frequency;
+node::node(char alphabet, int frequency){
     this->alphabet = alphabet;
-};
+    this->frequency = frequency;
+
+    this->left = NULL;
+    this->right = NULL;
+    // std::cout<<": "<<this->alphabet<<"\n";
+}
 
 qNode::qNode(node * n){
     this->n = n;
-    this->prev = NULL;
     this->next = NULL;
-
-};
-
+    this->prev == NULL;
+}
 
 PriorityQueue::PriorityQueue(){
+    qsize = 1;
     this->front = NULL;
     this->rear = NULL;
-    this->qsize = 0;
 }
 
-void PriorityQueue::enqueue(node * value){
-   qNode * node = new qNode(value);
-   if(this->front == NULL){
-       this->front = node;
-       this->rear = node;
-   }
-    //같은 alphabet 값 front에 있는 경우
-   else if(this->front->n->alphabet == value->alphabet){
-       this->front->n->frequency++;
-       
-    // check tree structure ?
-       
-       node->prev = this->rear; // inserting new node to rear
-       this->rear->next = node; // existring rear -> connecting new node
-       this->rear = node;
+void PriorityQueue::enqueue(node * n){
 
+    qNode * qn = new qNode(n);
+    qn->n = n;
 
+    // 빈 queue 일 경우
+    if(this->front == NULL){
+        this->front = qn;
+        this->rear = qn;
+        std::cout<<"null to new value "<<qn->n->alphabet<<"\n";
+        this->qsize += 1;
+    }
 
-   }
+    //비어있지 않은 경우, -> 같은 alphabet 을 가진 값을 찾아야함
+    else{
+        // 1. search value of n in the q
+            qNode * temp = this->front;
+            if(findNodeFromQueue(temp, qn->n->alphabet) == 1){
+            
+                return;
+            }
+        // 2. if the value is not in the queue insert to rear
+        // if front > qn, 
+            else if(this->front->n->frequency >= qn->n->frequency){
+                std::cout<<"no match inserting node to rear"<<qn->n->alphabet<<"\n";
+                qn->next = this->front;
+                this->front->prev = qn;
+                this->front = qn;
+                this->qsize += 1;
+                return;
+            }
 
-   else{ //
-       qNode * temp = this->front;
+            else if(this->rear->n->frequency <= qn->n->frequency){
+                qn->prev = this->rear;
+                this->rear->next = qn;
+                this->rear = qn;
+                qn->next = NULL;
+                this->qsize += 1;
+                return;
+            }
 
-   }
-}
-qNode * PriorityQueue::findNodeFromQueue(node * value){
+            else{
+                qNode * temp = this->front;
 
-}
+                while(temp->n->frequency < qn->n->frequency){
+                    temp = temp->next;
+                }
 
-void PriorityQueue::extract_max(int arr[]){
+                qn->next = temp;
+                qn->prev = temp->prev;
+                temp->prev = qn;
+                if(qn->prev != NULL){
+                    qn->prev->next = qn;
+                }
+                this->qsize += 1;
+                return;
+
+            }
+        // 3. max-heapify the frequency of the count
+    }
     
+
+}
+// insert value
+int PriorityQueue::findNodeFromQueue(qNode * qn, char alphabet){
+    std::cout<<"c-n"<<this->front->n->alphabet<<": qn-n"<<qn->n->alphabet<<"\n";
+
+    while(qn->next != NULL){
+        if(qn->n->alphabet == alphabet){
+            qn->n->frequency++;
+            std::cout<<qn->n->alphabet<<"'s frequency is updated to "<< qn->n->frequency<<"\n";
+            std::cout<<"index : "<<this->qsize<<"\n";
+            // if(qn->prev->n->frequency > qn->n->frequency){
+            //     qNode * temp = qn->prev;
+            //     //할일
+            //     // freq 값이 업데이트 된 이후 자리 swap -> child parent 값을 swap 시켜야함. 
+            //     qn->prev = qn;
+            //     qn->next = temp;
+
+
+
+
+            // }
+
+            return 1;
+            
+            
+        }
+        else{
+            qn = qn->next;
+        }
+    }
+    return 0;
 }
 
+void PriorityQueue::printQueue(){
+    qNode * qn = this->front;
 
-void PriorityQueue::findNodeFromQueue(char alphabet){
-    if(this->front->n->alphabet != alphabet){
-        
+    while(qn != NULL){
+        std::cout<<qn->n->alphabet<<" : "<<qn->n->frequency<<"\n";
+        qn = qn->next;
     }
 }
-void PriorityQueue::increase_key(char alphabet){
-    // node * findNodeFromQueue(alphabet);
-    
-    qNode * node = new qNode(n);
-
-}
-
-HuffmanCode::HuffmanCode()
-void HuffmanCode::printInfo(){
-    std::cout<<"Filename: "<<filename;
-    std::cout<<contentData;
-    std::cout<<"letters: "<<letters<<", bits: "<<bits;
-    std::cout<<"-----------------------";
-    std::cout<<"Huffman code table";
-    std::cout<<"Chat.\tFreq.\tCode";
-    // for();
-    std::cout<<"-----------------------";
-    std::cout<<"Encoding results: "; //after bits.cout 해서 결과 넣기
-    // for() print the encoded bit string
-
-
-}
-
-
 
 string readFile(string filename){
     std::ifstream file(filename);
@@ -101,5 +143,3 @@ string readFile(string filename){
     }
     return s;
 }
-
-
