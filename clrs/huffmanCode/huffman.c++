@@ -1,49 +1,72 @@
 #include "header.h"
 #include <string>
-class node{
-    public:
-        int frequency;
-        int binaryCode;
-        int prefixCode;
-        
-        void setData(int value);
+
+node::node(int frequency, char alphabet){
+    this->frequency = frequency;
+    this->alphabet = alphabet;
 };
 
-class HuffmanCode{
-    public:
-        string filename;
-        string contentData;
-        int letters;
-        int bits;
+qNode::qNode(node * n){
+    this->n = n;
+    this->prev = NULL;
+    this->next = NULL;
 
-        
-        void printInfo();
-        
 };
 
-int huffmanCode(int arr[]){
-    int n = sizeof(arr);
-    int q[n];
 
-    // copy(arr, arr + n, q);
-
-    node z;
-    for(int i = 1; i < n-1; i++){   
-        if(i == 0){
-            // go left
-        }   
-        else
-            // go right;
-
-    }
-
-    
-
-
-    
-    return 0;
+PriorityQueue::PriorityQueue(){
+    this->front = NULL;
+    this->rear = NULL;
+    this->qsize = 0;
 }
 
+void PriorityQueue::enqueue(node * value){
+   qNode * node = new qNode(value);
+   if(this->front == NULL){
+       this->front = node;
+       this->rear = node;
+   }
+    //같은 alphabet 값 front에 있는 경우
+   else if(this->front->n->alphabet == value->alphabet){
+       this->front->n->frequency++;
+       
+    // check tree structure ?
+       
+       node->prev = this->rear; // inserting new node to rear
+       this->rear->next = node; // existring rear -> connecting new node
+       this->rear = node;
+
+
+
+   }
+
+   else{ //
+       qNode * temp = this->front;
+
+   }
+}
+qNode * PriorityQueue::findNodeFromQueue(node * value){
+
+}
+
+void PriorityQueue::extract_max(int arr[]){
+    
+}
+
+
+void PriorityQueue::findNodeFromQueue(char alphabet){
+    if(this->front->n->alphabet != alphabet){
+        
+    }
+}
+void PriorityQueue::increase_key(char alphabet){
+    // node * findNodeFromQueue(alphabet);
+    
+    qNode * node = new qNode(n);
+
+}
+
+HuffmanCode::HuffmanCode()
 void HuffmanCode::printInfo(){
     std::cout<<"Filename: "<<filename;
     std::cout<<contentData;
@@ -58,6 +81,8 @@ void HuffmanCode::printInfo(){
 
 
 }
+
+
 
 string readFile(string filename){
     std::ifstream file(filename);
@@ -76,3 +101,5 @@ string readFile(string filename){
     }
     return s;
 }
+
+
