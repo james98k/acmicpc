@@ -185,6 +185,7 @@ class HuffmanCodes
 			root = new TreeNode(frequency[i], value[i]);
 			q.enQueue(root);
 		}
+		q.printQdata();
 		// printQdata(q);
 		// Execute loop until the priority queue contains more than 1 node
 		while (q.isSize() > 1)

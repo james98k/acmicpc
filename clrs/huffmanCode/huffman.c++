@@ -17,7 +17,7 @@ qNode::qNode(node * n){
 }
 
 PriorityQueue::PriorityQueue(){
-    qsize = 1;
+    qsize = 0;
     this->front = NULL;
     this->rear = NULL;
 }
@@ -25,7 +25,7 @@ PriorityQueue::PriorityQueue(){
 void PriorityQueue::enqueue(node * n){
 
     qNode * qn = new qNode(n);
-    qn->n = n;
+    
 
     // 빈 queue 일 경우
     if(this->front == NULL){
@@ -44,7 +44,8 @@ void PriorityQueue::enqueue(node * n){
                 return;
             }
         // 2. if the value is not in the queue insert to rear
-        // if front > qn, 
+           
+            // else if(this->rear->n->frequency <= qn->n->frequency){
             else if(this->front->n->frequency >= qn->n->frequency){
                 std::cout<<"no match inserting node to rear"<<qn->n->alphabet<<"\n";
                 qn->next = this->front;
@@ -80,6 +81,8 @@ void PriorityQueue::enqueue(node * n){
                 return;
 
             }
+
+            
         // 3. max-heapify the frequency of the count
     }
     
@@ -87,21 +90,21 @@ void PriorityQueue::enqueue(node * n){
 }
 // insert value
 int PriorityQueue::findNodeFromQueue(qNode * qn, char alphabet){
-    std::cout<<"c-n"<<this->front->n->alphabet<<": qn-n"<<qn->n->alphabet<<"\n";
+    
 
     while(qn->next != NULL){
+        std::cout<<"c-n"<<qn->n->alphabet<<": qn-n"<<alphabet<<"\n";
         if(qn->n->alphabet == alphabet){
             qn->n->frequency++;
             std::cout<<qn->n->alphabet<<"'s frequency is updated to "<< qn->n->frequency<<"\n";
-            std::cout<<"index : "<<this->qsize<<"\n";
+            std::cout<<"index : "<<qn->index<<"\n";
+
             // if(qn->prev->n->frequency > qn->n->frequency){
             //     qNode * temp = qn->prev;
             //     //할일
             //     // freq 값이 업데이트 된 이후 자리 swap -> child parent 값을 swap 시켜야함. 
             //     qn->prev = qn;
             //     qn->next = temp;
-
-
 
 
             // }
@@ -113,6 +116,8 @@ int PriorityQueue::findNodeFromQueue(qNode * qn, char alphabet){
         else{
             qn = qn->next;
         }
+        
+        
     }
     return 0;
 }
@@ -124,6 +129,10 @@ void PriorityQueue::printQueue(){
         std::cout<<qn->n->alphabet<<" : "<<qn->n->frequency<<"\n";
         qn = qn->next;
     }
+}
+
+node * HuffmanCode::buildHuffmanCode(PriorityQueue * pq){
+    
 }
 
 string readFile(string filename){

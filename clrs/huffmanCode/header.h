@@ -25,6 +25,7 @@ class qNode{
         node * n;
         qNode * next;
         qNode * prev;
+        int index;
         qNode(node * n);
 };
 
@@ -35,7 +36,7 @@ class HuffmanCode{
         int letters;
         int bits;
 
-        node * buildHuffmanCode(char arr[], int freq[], int n);
+        node * buildHuffmanCode(PriorityQueue * pq);
 
         void printInfo();
         
@@ -45,6 +46,7 @@ class PriorityQueue{
 
     public:
         int qsize;
+        
         qNode * front;
         qNode * rear;
 
