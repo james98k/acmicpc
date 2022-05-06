@@ -99,15 +99,20 @@ int PriorityQueue::findNodeFromQueue(qNode * qn, char alphabet){
             std::cout<<qn->n->alphabet<<"'s frequency is updated to "<< qn->n->frequency<<"\n";
             std::cout<<"index : "<<qn->index<<"\n";
 
-            // if(qn->prev->n->frequency > qn->n->frequency){
-            //     qNode * temp = qn->prev;
-            //     //할일
-            //     // freq 값이 업데이트 된 이후 자리 swap -> child parent 값을 swap 시켜야함. 
-            //     qn->prev = qn;
-            //     qn->next = temp;
+            // qNode * qTemp = this->front;
 
-
+            // while((qTemp->next != NULL) && (qTemp->n->frequency < qn->n->frequency)){
+            //     qTemp = qTemp->next;
             // }
+            // qn->next = qTemp; 
+            // qn->prev = qTemp->prev;
+            // qTemp->prev = qn;
+            // if(qn->prev != NULL)
+            //     qn->prev->next = qn;
+
+            
+            
+
 
             return 1;
             
@@ -121,7 +126,9 @@ int PriorityQueue::findNodeFromQueue(qNode * qn, char alphabet){
     }
     return 0;
 }
+void maxHeapify(){
 
+}
 void PriorityQueue::printQueue(){
     qNode * qn = this->front;
 
@@ -131,9 +138,9 @@ void PriorityQueue::printQueue(){
     }
 }
 
-node * HuffmanCode::buildHuffmanCode(PriorityQueue * pq){
-    
-}
+// node * HuffmanCode::buildHuffmanCode(PriorityQueue * pq){
+
+// }
 
 string readFile(string filename){
     std::ifstream file(filename);

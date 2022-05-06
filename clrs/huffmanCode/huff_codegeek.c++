@@ -214,10 +214,12 @@ int main()
 {
 	HuffmanCodes task = HuffmanCodes();
 	char value[] = {
-		'a' , 'b' , 'c' , 'd' , 'e' , 'f' , 'g'
+		// 'a' , 'b' , 'c' , 'd' , 'e' , 'f' , 'g'
+		'D', 'A', 'C', 'B'
 	};
 	int frequency[] = {
-		16 , 8 , 19 , 32 , 21 , 10 , 5
+		// 16 , 8 , 19 , 32 , 21 , 10 , 5
+		3, 5, 6, 1
 	};
 	int n = sizeof(frequency) / sizeof(frequency[0]);
 	TreeNode *root = task.buildHuffmanCodes(value, frequency, n);

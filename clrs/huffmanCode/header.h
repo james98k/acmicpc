@@ -36,7 +36,7 @@ class HuffmanCode{
         int letters;
         int bits;
 
-        node * buildHuffmanCode(PriorityQueue * pq);
+        // node * buildHuffmanCode(PriorityQueue * pq);
 
         void printInfo();
         
