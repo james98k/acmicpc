@@ -1,39 +1,45 @@
 #include <iostream>
-#include <string>
+#include <vector>
 
 using namespace std;
 
-int main()
-{
-    string a, b;
-    std::cin >> a >> b;
-
-    int carry = 0;
-    int sum = 0;
-    int temp_sum = 0;
-    string result = "";
-
-    // (int)a[a_length-1];
-
-    // std::cout << "a length : " << a_length << "\nb length : " << b_length;
-    // std::cout << a[a_length - 1] - '0' << " " << b[b_length - 1] - '0' << "\n";
-    // long int long_result = stol(result);
-
-    int length = 0;
-    if (a.length() > b.length())
-        length = a.length();
-    else
-        length = b.length();
-
-    for (int i = length; i > 0; i--)
-    {
-        std::cout << "target : " << a[a.length() - i] << " target b : " << b[b.length() - i] << "\n";
-        temp_sum += (int)(a[a.length() - i]) + (int)(b[b.length() - i]) + carry;
-
-        carry = temp_sum / 10;
-        sum = temp_sum % 10;
-        std::cout << "temp_sum : " << temp_sum << "\nsum : " << sum << "\ncarry : " << carry << "\n";
-        result = to_string(sum) + result;
+void printVector(vector<int> v){
+    for(int i = 0; i < v.size(); i++){
+        std::cout<<v.at(i);
     }
-    std::cout << result << endl;
 }
+
+int main(){
+
+    //문제 : long long 사이즈를 넘어서는 값을 계산해야됨. 
+    //-> string 으로 해결하려고 했지만? string 을 쓸 바에는 vector 를 사용하는 방법은? 
+    //vector 를 사용할때 문제는 무엇인가? 
+    //
+
+    std::cout<<"start"<<endl;
+    vector<int> a, b;
+
+
+    int temp;
+    int count = 0;
+    while(std::cin>>temp){
+        std::cout<<temp;
+        a.push_back(temp);
+        std::cout<<count;
+        count++;
+        
+    }
+
+    temp = 0;
+    // while(std::cin>>temp){
+    //     b.push_back(temp);
+    // }
+std::cout<<"end"<<endl;
+    // printVector(a);
+    // printVector(b);
+
+    
+    return 0;
+}
+
+// 9223372036854775807 9223372036854775808
