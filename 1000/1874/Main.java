@@ -10,12 +10,12 @@ import java.util.*;
 // 2
 // 1
 
-class Main{
+public class Main{
 
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
-        int inputLength = sc.nextInt();
+        int inputLength = sc.nextInt(); 
         int temp = 0;
         boolean flag = true;
         String answer = "";
@@ -26,8 +26,6 @@ class Main{
 
         for(int i = 0; i < inputLength; i++){
             temp = sc.nextInt();
-            // System.out.println("target");
-            // System.out.println(targetStack);
             
             for(int j = 1; j <= temp; j++){
                 if(stack.contains(j) || targetStack.contains(j)){
@@ -41,17 +39,12 @@ class Main{
                 
             }
             if(stack.contains(temp) && stack.peek() != temp){
-                // answer = "NO";
                 System.out.println("NO");
                 flag = false;
                 break;
             }
             targetStack.push(stack.pop());
             answer += "-";
-            
-            // System.out.println("stack");
-            // System.out.println(stack);
-            
            
         }
         if(flag == true){
